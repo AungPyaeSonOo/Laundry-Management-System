@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const {sequelize} = require('../config/database');
+const sequelize = require('../config/database');
 
 const OrderStatusHistory = sequelize.define('OrderStatusHistory', {
     history_id: {
