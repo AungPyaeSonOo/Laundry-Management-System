@@ -22,20 +22,14 @@ const Employee = sequelize.define('Employee', {
         unique: true
     },
     position: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(20), // ✅ Changed from ENUM to STRING
         allowNull: false,
-        defaultValue: 'washer',
-        validate: {
-            isIn: [['washer', 'ironer', 'packer', 'delivery', 'manager']]
-        }
+        defaultValue: 'washer'
     },
     salary_type: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING(10), // ✅ Changed from ENUM to STRING
         allowNull: false,
-        defaultValue: 'fixed',
-        validate: {
-            isIn: [['fixed', 'hourly', 'daily']]
-        }
+        defaultValue: 'fixed'
     },
     salary_amount: {
         type: DataTypes.DECIMAL(10, 2),

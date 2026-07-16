@@ -28,7 +28,7 @@ const Payment = sequelize.define('Payment', {
         allowNull: false
     },
     payment_method: {
-        type: DataTypes.ENUM('cash', 'kpay', 'wave_pay', 'bank_transfer'),
+        type: DataTypes.STRING(20), // ✅ Changed from ENUM to STRING
         allowNull: false
     },
     payment_reference: {
@@ -60,7 +60,7 @@ const Payment = sequelize.define('Payment', {
         allowNull: true
     },
     status: {
-        type: DataTypes.ENUM('collected', 'submitted', 'verified', 'completed'),
+        type: DataTypes.STRING(20), // ✅ Changed from ENUM to STRING
         allowNull: false,
         defaultValue: 'collected'
     },

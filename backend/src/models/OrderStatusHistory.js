@@ -16,7 +16,7 @@ const OrderStatusHistory = sequelize.define('OrderStatusHistory', {
         }
     },
     status: {
-        type: DataTypes.ENUM('pending', 'collected', 'washing', 'ironing', 'ready', 'delivered', 'payment_pending', 'completed', 'cancelled'),
+        type: DataTypes.STRING(20), // ✅ Changed from ENUM to STRING
         allowNull: false
     },
     user_id: {

@@ -35,7 +35,6 @@ const testConnection = async () => {
     }
 };
 
-// ✅ Export both sequelize and testConnection
 module.exports = { 
     sequelize,
     testConnection

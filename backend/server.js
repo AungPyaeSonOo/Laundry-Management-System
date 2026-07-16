@@ -1,5 +1,5 @@
 const app = require('./src/app');
-const { sequelize, testConnection } = require('./src/config/database'); // ✅ ဒီလိုပြောင်းပါ
+const { sequelize, testConnection } = require('./src/config/database');
 const { User, ExpenseCategory, ClothingType } = require('./src/models');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
@@ -83,8 +83,8 @@ const startServer = async () => {
             process.exit(1);
         }
 
-        // ✅ Sync database
-        await sequelize.sync({ alter: true });
+        // ✅ Sync database with force: false to avoid ENUM issues
+        await sequelize.sync({ force: false });
         console.log('✅ Database synchronized');
 
         // Seed initial data

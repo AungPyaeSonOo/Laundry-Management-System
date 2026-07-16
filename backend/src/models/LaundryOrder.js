@@ -57,15 +57,15 @@ const LaundryOrder = sequelize.define('LaundryOrder', {
         defaultValue: 0
     },
     status: {
-        type: DataTypes.ENUM('pending', 'collected', 'washing', 'ironing', 'ready', 'delivered', 'payment_pending', 'completed', 'cancelled'),
+        type: DataTypes.STRING(20), // ✅ Changed from ENUM to STRING
         defaultValue: 'pending'
     },
     payment_status: {
-        type: DataTypes.ENUM('unpaid', 'partial', 'paid'),
+        type: DataTypes.STRING(20), // ✅ Changed from ENUM to STRING
         defaultValue: 'unpaid'
     },
     payment_method: {
-        type: DataTypes.ENUM('cash', 'kpay', 'wave_pay', 'bank_transfer'),
+        type: DataTypes.STRING(20),
         allowNull: true
     },
     payment_reference: {

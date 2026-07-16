@@ -16,7 +16,7 @@ const InventoryTransaction = sequelize.define('InventoryTransaction', {
         }
     },
     transaction_type: {
-        type: DataTypes.ENUM('in', 'out', 'adjustment'),
+        type: DataTypes.STRING(20), // ✅ Changed from ENUM to STRING
         allowNull: false
     },
     quantity: {

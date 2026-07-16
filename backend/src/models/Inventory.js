@@ -12,7 +12,7 @@ const Inventory = sequelize.define('Inventory', {
         allowNull: false
     },
     category: {
-        type: DataTypes.ENUM('detergent', 'fabric_softener', 'bleach', 'stain_remover', 'packaging', 'spare_part', 'other'),
+        type: DataTypes.STRING(50), // ✅ Changed from ENUM to STRING
         allowNull: false
     },
     quantity: {

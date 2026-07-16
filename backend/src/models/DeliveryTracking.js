@@ -41,7 +41,7 @@ const DeliveryTracking = sequelize.define('DeliveryTracking', {
         allowNull: true
     },
     status: {
-        type: DataTypes.ENUM('scheduled', 'picked_up', 'in_transit', 'delivered', 'failed'),
+        type: DataTypes.STRING(20), // ✅ Changed from ENUM to STRING
         defaultValue: 'scheduled'
     },
     delivery_address: {

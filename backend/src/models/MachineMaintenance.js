@@ -16,7 +16,7 @@ const MachineMaintenance = sequelize.define('MachineMaintenance', {
         allowNull: false
     },
     maintenance_type: {
-        type: DataTypes.ENUM('routine', 'repair', 'replacement'),
+        type: DataTypes.STRING(20), // ✅ Changed from ENUM to STRING
         allowNull: false
     },
     cost: {
