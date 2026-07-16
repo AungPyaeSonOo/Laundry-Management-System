@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const { User, Employee } = require('../models');
 const { successResponse, errorResponse } = require('../utils/responseHandler');
 const bcrypt = require('bcryptjs');
+const { Op } = require('sequelize'); // ✅ Op ကိုထည့်ပါ
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your_super_secret_jwt_key_here';
 
@@ -154,7 +155,6 @@ exports.updateProfile = async (req, res) => {
             return errorResponse(res, 'User not found', 404);
         }
 
-        // Check if email already exists
         if (email && email !== user.email) {
             const existingUser = await User.findOne({
                 where: { email }
