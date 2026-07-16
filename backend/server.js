@@ -1,5 +1,5 @@
 const app = require('./src/app');
-const { sequelize, testConnection } = require('./src/config/database');
+const { sequelize, testConnection } = require('./src/config/database'); // ✅ ဒီလိုပြောင်းပါ
 const { User, ExpenseCategory, ClothingType } = require('./src/models');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5001;
 // Seed initial data
 const seedDatabase = async () => {
     try {
+        // Admin user
         const adminExists = await User.findOne({ where: { username: 'admin' } });
         if (!adminExists) {
             const hashedPassword = await bcrypt.hash('Admin@123', 10);
@@ -75,6 +76,7 @@ const seedDatabase = async () => {
 const startServer = async () => {
     try {
         // ✅ Test database connection first
+        console.log('📡 Testing database connection...');
         const connected = await testConnection();
         if (!connected) {
             console.error('❌ Database connection failed. Exiting...');
