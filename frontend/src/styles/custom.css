@@ -1,0 +1,74 @@
+/* Custom Bootstrap overrides */
+.card {
+    border-radius: 0.75rem;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .btn-primary {
+    background-color: #4f46e5;
+    border-color: #4f46e5;
+  }
+  
+  .btn-primary:hover {
+    background-color: #4338ca;
+    border-color: #4338ca;
+  }
+  
+  .btn-primary:focus {
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+  }
+  
+  /* Table responsive */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Mobile menu */
+  @media (max-width: 768px) {
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 280px;
+      height: 100vh;
+      z-index: 1050;
+      transition: left 0.3s ease;
+    }
+  
+    .sidebar.open {
+      left: 0;
+    }
+  
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1040;
+      display: none;
+    }
+  
+    .sidebar-overlay.open {
+      display: block;
+    }
+  }
+  
+  /* Print styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    
+    .print-only {
+      display: block !important;
+    }
+  }

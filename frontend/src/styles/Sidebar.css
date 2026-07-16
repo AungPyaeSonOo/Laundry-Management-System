@@ -1,0 +1,11 @@
+.hover-bg-light:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .min-w-0 {
+    min-width: 0;
+  }
+  
+  .transition-all {
+    transition: all 0.2s ease;
+  }
