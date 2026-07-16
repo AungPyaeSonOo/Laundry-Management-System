@@ -1,5 +1,5 @@
 const app = require('./src/app');
-const sequelize = require('./src/config/database'); // ✅ ဒီလိုပြောင်းပါ
+const { sequelize, testConnection } = require('./src/config/database'); // ✅ ဒီလိုပြောင်းပါ
 const { User, ExpenseCategory, ClothingType } = require('./src/models');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
