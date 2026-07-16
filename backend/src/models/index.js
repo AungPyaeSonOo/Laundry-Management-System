@@ -16,7 +16,7 @@ const DailyReport = require('./DailyReport');
 const OrderStatusHistory = require('./OrderStatusHistory');
 const DeliveryTracking = require('./DeliveryTracking');
 
-// ✅ Try to load Payment - handle if not exists
+// Try to load Payment
 let Payment = null;
 try {
     Payment = require('./Payment');
@@ -60,19 +60,15 @@ Expense.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 ExpenseCategory.hasMany(Expense, { foreignKey: 'expense_category_id', as: 'expenses' });
 Expense.belongsTo(ExpenseCategory, { foreignKey: 'expense_category_id', as: 'category' });
 
-// ============== ✅ NEW: MachineMaintenance - Expense Associations ==============
-// MachineMaintenance က Expense ကို ညွှန်းတယ် (Belongs To)
+// MachineMaintenance - Expense
 MachineMaintenance.belongsTo(Expense, {
     foreignKey: 'expense_id',
-    as: 'expense'  // maintenance.expense ဆိုပြီး ဆွဲလို့ရမယ်
+    as: 'expense'
 });
-
-// Expense မှာ MachineMaintenance တွေ အများကြီး ရှိနိုင်တယ် (Has Many)
 Expense.hasMany(MachineMaintenance, {
     foreignKey: 'expense_id',
-    as: 'maintenances'  // expense.maintenances ဆိုပြီး ဆွဲလို့ရမယ်
+    as: 'maintenances'
 });
-// ============================================================================
 
 // Inventory - InventoryTransaction
 Inventory.hasMany(InventoryTransaction, { foreignKey: 'inventory_id', as: 'transactions' });
@@ -98,11 +94,11 @@ OrderStatusHistory.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 LaundryOrder.hasOne(DeliveryTracking, { foreignKey: 'order_id', as: 'delivery' });
 DeliveryTracking.belongsTo(LaundryOrder, { foreignKey: 'order_id', as: 'order' });
 
-// User - DeliveryTracking (as delivery person)
+// User - DeliveryTracking
 User.hasMany(DeliveryTracking, { foreignKey: 'delivery_person_id', as: 'deliveries' });
 DeliveryTracking.belongsTo(User, { foreignKey: 'delivery_person_id', as: 'delivery_person' });
 
-// ✅ Payment Associations - Only if Payment exists
+// Payment Associations
 if (Payment) {
     LaundryOrder.hasMany(Payment, { foreignKey: 'order_id', as: 'payments' });
     Payment.belongsTo(LaundryOrder, { foreignKey: 'order_id', as: 'order' });
@@ -127,5 +123,5 @@ module.exports = {
     DailyReport,
     OrderStatusHistory,
     DeliveryTracking,
-    Payment // Will be null if not found
+    Payment
 };

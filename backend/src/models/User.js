@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../config/database'); // ✅ မှန်ကန်တဲ့ import
 const bcrypt = require('bcryptjs');
 
 const User = sequelize.define('User', {
@@ -75,12 +75,6 @@ User.prototype.comparePassword = async function(password) {
 User.prototype.toJSON = function() {
     const values = { ...this.get() };
     delete values.password_hash;
-    
-    // ✅ Add position if employee exists
-    if (this.employee) {
-        values.position = this.employee.position;
-    }
-    
     return values;
 };
 
