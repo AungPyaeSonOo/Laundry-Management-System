@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const { sequelize } = require('../config/database');
 
 const OrderStatusHistory = sequelize.define('OrderStatusHistory', {
     history_id: {
@@ -16,7 +16,7 @@ const OrderStatusHistory = sequelize.define('OrderStatusHistory', {
         }
     },
     status: {
-        type: DataTypes.ENUM('pending', 'collected', 'washing', 'ironing', 'ready', 'delivered', 'completed', 'cancelled'),
+        type: DataTypes.ENUM('pending', 'collected', 'washing', 'ironing', 'ready', 'delivered', 'payment_pending', 'completed', 'cancelled'),
         allowNull: false
     },
     user_id: {

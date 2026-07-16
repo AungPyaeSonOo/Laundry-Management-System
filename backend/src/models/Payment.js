@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const { sequelize } = require('../config/database');
 
 const Payment = sequelize.define('Payment', {
     payment_id: {
@@ -9,11 +9,19 @@ const Payment = sequelize.define('Payment', {
     },
     order_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: 'laundry_orders',
+            key: 'order_id'
+        }
     },
     user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: 'users',
+            key: 'user_id'
+        }
     },
     amount: {
         type: DataTypes.DECIMAL(10, 2),
@@ -29,7 +37,11 @@ const Payment = sequelize.define('Payment', {
     },
     submitted_to: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
+        references: {
+            model: 'users',
+            key: 'user_id'
+        }
     },
     submitted_at: {
         type: DataTypes.DATE,
@@ -37,7 +49,11 @@ const Payment = sequelize.define('Payment', {
     },
     verified_by: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
+        references: {
+            model: 'users',
+            key: 'user_id'
+        }
     },
     verified_at: {
         type: DataTypes.DATE,

@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const { sequelize } = require('../config/database');
 
 const DeliveryTracking = sequelize.define('DeliveryTracking', {
     delivery_id: {
@@ -24,12 +24,10 @@ const DeliveryTracking = sequelize.define('DeliveryTracking', {
             key: 'user_id'
         }
     },
-    // ✅ LATITUDE (တောင်လတ္တီတွဒ်)
     lat: {
         type: DataTypes.DECIMAL(10, 8),
         allowNull: true
     },
-    // ✅ LONGITUDE (လောင်ဂျီတွဒ်)
     lng: {
         type: DataTypes.DECIMAL(11, 8),
         allowNull: true

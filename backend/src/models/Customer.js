@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const { sequelize } = require('../config/database');
 
 const Customer = sequelize.define('Customer', {
     customer_id: {
@@ -13,8 +13,7 @@ const Customer = sequelize.define('Customer', {
     },
     phone: {
         type: DataTypes.STRING(20),
-        allowNull: false,
-        unique: true
+        allowNull: false
     },
     email: {
         type: DataTypes.STRING(100),
@@ -24,9 +23,13 @@ const Customer = sequelize.define('Customer', {
         type: DataTypes.TEXT,
         allowNull: true
     },
-    notes: {
+    note: {
         type: DataTypes.TEXT,
         allowNull: true
+    },
+    loyalty_points: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
     },
     is_active: {
         type: DataTypes.BOOLEAN,
@@ -38,13 +41,5 @@ const Customer = sequelize.define('Customer', {
     createdAt: 'created_at',
     updatedAt: 'updated_at'
 });
-
-// ✅ Association will be defined in index.js
-Customer.associate = function(models) {
-    Customer.hasMany(models.LaundryOrder, { 
-        foreignKey: 'customer_id', 
-        as: 'orders'  // ✅ Use 'orders' as alias
-    });
-};
 
 module.exports = Customer;

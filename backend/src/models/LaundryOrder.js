@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const { sequelize } = require('../config/database');
 
 const LaundryOrder = sequelize.define('LaundryOrder', {
     order_id: {
@@ -64,7 +64,6 @@ const LaundryOrder = sequelize.define('LaundryOrder', {
         type: DataTypes.ENUM('unpaid', 'partial', 'paid'),
         defaultValue: 'unpaid'
     },
-    // ✅ Payment Fields for Delivery Collection
     payment_method: {
         type: DataTypes.ENUM('cash', 'kpay', 'wave_pay', 'bank_transfer'),
         allowNull: true
@@ -75,8 +74,7 @@ const LaundryOrder = sequelize.define('LaundryOrder', {
     },
     payment_collected_by: {
         type: DataTypes.INTEGER,
-        allowNull: true,
-        comment: 'Delivery person who collected payment'
+        allowNull: true
     },
     payment_collected_at: {
         type: DataTypes.DATE,
@@ -84,8 +82,7 @@ const LaundryOrder = sequelize.define('LaundryOrder', {
     },
     payment_verified_by: {
         type: DataTypes.INTEGER,
-        allowNull: true,
-        comment: 'Admin/Manager/Accountant who verified payment'
+        allowNull: true
     },
     payment_verified_at: {
         type: DataTypes.DATE,

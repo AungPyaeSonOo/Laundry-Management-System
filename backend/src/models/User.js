@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database'); // ✅ ဒီလိုပြောင်းပါ
+const { sequelize } = require('../config/database');
 const bcrypt = require('bcryptjs');
 
 const User = sequelize.define('User', {
