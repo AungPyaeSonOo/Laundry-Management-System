@@ -1,5 +1,5 @@
 const app = require('./src/app');
-const sequelize = require('./src/config/database');
+const { sequelize, testConnection } = require('./src/config/database');
 const { User, ExpenseCategory, ClothingType } = require('./src/models');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
@@ -9,7 +9,6 @@ const PORT = process.env.PORT || 5001;
 // Seed initial data
 const seedDatabase = async () => {
     try {
-        // ✅ Create admin user if not exists with correct password
         const adminExists = await User.findOne({ where: { username: 'admin' } });
         if (!adminExists) {
             const hashedPassword = await bcrypt.hash('Admin@123', 10);
@@ -21,19 +20,10 @@ const seedDatabase = async () => {
                 role: 'admin',
                 is_active: true
             });
-            console.log('✅ Admin user created with username: admin, password: Admin@123');
-        } else {
-            // ✅ Update admin password if needed
-            const admin = await User.findOne({ where: { username: 'admin' } });
-            const isValid = await bcrypt.compare('Admin@123', admin.password_hash);
-            if (!isValid) {
-                admin.password_hash = await bcrypt.hash('Admin@123', 10);
-                await admin.save();
-                console.log('✅ Admin password updated to: Admin@123');
-            }
+            console.log('✅ Admin user created');
         }
 
-        // Create expense categories if not exists
+        // Expense categories
         const categories = [
             'Detergent', 'Fabric Softener', 'Bleach', 'Stain Remover',
             'Packaging', 'Machine Maintenance', 'Electricity', 'Water',
@@ -53,7 +43,7 @@ const seedDatabase = async () => {
         }
         console.log('✅ Expense categories seeded');
 
-        // Create clothing types if not exists
+        // Clothing types
         const clothingTypes = [
             { type_name: 'Shirt', default_price: 500 },
             { type_name: 'Pants', default_price: 700 },
@@ -63,10 +53,7 @@ const seedDatabase = async () => {
             { type_name: 'T-shirt', default_price: 400 },
             { type_name: 'Jeans', default_price: 800 },
             { type_name: 'Skirt', default_price: 600 },
-            { type_name: 'Socks', default_price: 200 },
-            { type_name: 'Underwear', default_price: 300 },
-            { type_name: 'Towel', default_price: 500 },
-            { type_name: 'Bed Sheet', default_price: 1200 }
+            { type_name: 'Towel', default_price: 500 }
         ];
 
         for (const type of clothingTypes) {
@@ -87,27 +74,19 @@ const seedDatabase = async () => {
 // Sync database and start server
 const startServer = async () => {
     try {
-        // Test database connection
-        await sequelize.authenticate();
-        console.log('✅ Database connection established');
+        // ✅ Test database connection first
+        const connected = await testConnection();
+        if (!connected) {
+            console.error('❌ Database connection failed. Exiting...');
+            process.exit(1);
+        }
 
-        // ✅ Sync database without force to preserve data
+        // ✅ Sync database
         await sequelize.sync({ alter: true });
         console.log('✅ Database synchronized');
 
         // Seed initial data
         await seedDatabase();
-
-        // ✅ Verify admin user
-        const admin = await User.findOne({ where: { username: 'admin' } });
-        if (admin) {
-            console.log('✅ Admin user verified:', {
-                username: admin.username,
-                role: admin.role,
-                is_active: admin.is_active,
-                password_hash: admin.password_hash.substring(0, 20) + '...'
-            });
-        }
 
         app.listen(PORT, () => {
             console.log(`🚀 Server running on port ${PORT}`);
