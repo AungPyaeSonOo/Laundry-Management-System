@@ -5,15 +5,13 @@ require('dotenv').config();
 
 const app = express();
 
-// ✅ Enhanced CORS configuration
+// ✅ CORS
 app.use(cors({
     origin: [
         'http://localhost:3000',
         'http://localhost:5173',
-        'https://your-frontend.onrender.com',  // ✅ Render Frontend URL
-        'https://*.onrender.com',              // ✅ Render အကုန်လုံးအတွက်
-        'https://your-frontend.vercel.app',
-        'https://your-frontend.netlify.app'
+        'https://laundry-frontend-g5u9.onrender.com',  // ✅ Render Frontend URL
+        'https://*.onrender.com'
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -23,18 +21,16 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ✅ Serve Static Files from frontend/dist (Production)
-if (process.env.NODE_ENV === 'production') {
-    const frontendDist = path.join(__dirname, '../frontend/dist');
-    app.use(express.static(frontendDist));
-    // ✅ All non-API routes go to index.html (SPA)
-    app.get('*', (req, res) => {
-        // Don't interfere with API routes
-        if (!req.path.startsWith('/api')) {
-            res.sendFile(path.join(frontendDist, 'index.html'));
-        }
-    });
-}
+// ✅ REMOVE or COMMENT OUT this section (Frontend Static Files)
+// if (process.env.NODE_ENV === 'production') {
+//     const frontendDist = path.join(__dirname, '../../frontend/dist');
+//     app.use(express.static(frontendDist));
+//     app.get('*', (req, res) => {
+//         if (!req.path.startsWith('/api')) {
+//             res.sendFile(path.join(frontendDist, 'index.html'));
+//         }
+//     });
+// }
 
 // Import routes
 const authRoutes = require('./routes/auth.routes');
@@ -62,14 +58,25 @@ app.use('/api/reports', reportRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/clothing-types', clothingTypeRoutes);
 
-// ✅ Health check with more info
+// ✅ Health check
 app.get('/api/health', (req, res) => {
-    res.json({ 
-        status: 'OK', 
+    res.json({
+        success: true,
+        status: 'OK',
         message: 'Laundry API is running',
         timestamp: new Date().toISOString(),
         version: '1.0.0'
     });
+});
+
+// ✅ Catch-all for non-API routes (Return 404 for frontend routes)
+app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api')) {
+        res.status(404).json({
+            success: false,
+            message: 'API endpoint not found. Frontend is hosted on Render.'
+        });
+    }
 });
 
 app.use(errorHandler);
