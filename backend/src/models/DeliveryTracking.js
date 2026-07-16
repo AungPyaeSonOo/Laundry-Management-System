@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const {sequelize} = require('../config/database');
 
 const DeliveryTracking = sequelize.define('DeliveryTracking', {
     delivery_id: {
