@@ -1,16 +1,15 @@
 import axios from 'axios';
 
-// ✅ Dynamic API URL based on environment
+// ✅ Railway Backend URL (သင့် URL နဲ့ အစားထိုးပါ)
 const API_URL = import.meta.env.PROD 
-    ? '/api'  // Production: proxy via backend
-    : (import.meta.env.VITE_API_URL || 'http://localhost:5001/api');
+    ? 'laundry-management-system-production-327a.up.railway.app/api'  // ✅ ဒီမှာ သင့် Railway URL ထည့်
+    : 'http://localhost:5001/api';
 
 console.log('🔗 API URL:', API_URL);
-console.log('🔧 Environment:', import.meta.env.PROD ? 'Production' : 'Development');
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
-  timeout: 30000,
+  timeout: 60000,  // ✅ Timeout ကိုတိုးပါ
   headers: {
     'Content-Type': 'application/json',
   },
