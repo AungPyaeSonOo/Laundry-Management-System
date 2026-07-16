@@ -3,18 +3,19 @@
     "version": "1.0.0",
     "description": "Laundry Management System - Full Stack",
     "scripts": {
-        "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-        "dev:backend": "cd backend && npm run dev",
-        "dev:frontend": "cd frontend && npm run dev",
-        "build": "npm run build:backend && npm run build:frontend",
-        "build:backend": "cd backend && npm install",
-        "build:frontend": "cd frontend && npm install && npm run build",
-        "start": "cd backend && npm start",
-        "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
-        "prod": "npm run build && npm run start"
+      "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+      "dev:backend": "cd backend && npm run dev",
+      "dev:frontend": "cd frontend && npm run dev",
+      "build": "npm run build:backend && npm run build:frontend",
+      "build:backend": "cd backend && npm install",
+      "build:frontend": "cd frontend && npm install && npm run build",
+      "start": "cd backend && npm start",
+      "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+      "prod": "cross-env NODE_ENV=production npm run build && npm run start",
+      "clean": "rm -rf node_modules backend/node_modules frontend/node_modules"
     },
     "devDependencies": {
-        "concurrently": "^8.2.2",
-        "cross-env": "^10.1.0"
+      "concurrently": "^8.2.0",
+      "cross-env": "^7.0.3"
     }
-}
+  }

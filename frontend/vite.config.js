@@ -7,7 +7,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:5001', // ✅ 5000 ကနေ 5001 ကိုပြောင်း
+        target: 'http://localhost:5001',
         changeOrigin: true,
       }
     }
@@ -15,7 +15,8 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'terser',
+    // ✅ terser ကို ဖယ်ထားပါ (ဒါမှမဟုတ် esbuild ကိုသုံးပါ)
+    minify: 'esbuild', // terser အစား esbuild ကိုသုံးပါ
     rollupOptions: {
       output: {
         manualChunks: {
