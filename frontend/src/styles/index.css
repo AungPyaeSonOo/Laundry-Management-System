@@ -10,10 +10,18 @@
   --font-primary: 'Inter', 'Pyidaungsu', 'Noto Sans Myanmar', 'Myanmar Text', 'Myanmar3', sans-serif;
 }
 
-body {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
   font-family: var(--font-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* ============================================
@@ -67,875 +75,366 @@ body {
 }
 
 /* ============================================
-   BODY - FULL DARK BACKGROUND
+   BODY - FIXED
    ============================================ */
 body {
   background-color: var(--bg-body) !important;
   color: var(--text-primary) !important;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
   min-height: 100vh;
-}
-
-.dark-mode body {
-  background-color: #0a0f1e !important;
+  width: 100%;
 }
 
 /* ============================================
-   MAIN LAYOUT - FULL DARK
+   MAIN LAYOUT - FIXED FOR MOBILE
    ============================================ */
-.dark-mode .main-layout,
-.dark-mode .main-content,
-.dark-mode .container-fluid,
-.dark-mode .container {
-  background-color: #0a0f1e !important;
+.main-layout {
+  background-color: var(--bg-body) !important;
+  min-height: 100vh;
+  width: 100%;
 }
 
-.dark-mode .p-4,
-.dark-mode .p-3,
-.dark-mode .p-5,
-.dark-mode .px-4,
-.dark-mode .py-4 {
+.main-content {
+  background-color: var(--bg-body) !important;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.content-area {
+  background-color: var(--bg-body) !important;
+  padding: 1rem;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ============================================
+   ALL CARDS - FIXED
+   ============================================ */
+.card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px var(--shadow-color) !important;
+  color: var(--text-primary) !important;
+  transition: all 0.3s ease;
+}
+
+.card-body {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+.card-header {
+  background-color: var(--bg-card) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.card-footer {
+  background-color: var(--bg-card) !important;
+  border-top: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.card-title {
+  color: var(--text-primary) !important;
+}
+
+.card-text {
+  color: var(--text-secondary) !important;
+}
+
+/* ============================================
+   ALL TABLES - FIXED
+   ============================================ */
+.table {
+  color: var(--text-primary) !important;
   background-color: transparent !important;
 }
 
-/* ============================================
-   ALL PAGES BACKGROUND
-   ============================================ */
-.dark-mode .page-wrapper,
-.dark-mode .page-container,
-.dark-mode .dashboard-page,
-.dark-mode .admin-dashboard,
-.dark-mode .orders-page,
-.dark-mode .customers-page,
-.dark-mode .employees-page,
-.dark-mode .users-page,
-.dark-mode .expenses-page,
-.dark-mode .inventory-page,
-.dark-mode .reports-page,
-.dark-mode .profile-page,
-.dark-mode .delivery-page,
-.dark-mode .washer-page,
-.dark-mode .ironer-page,
-.dark-mode .packer-page {
-  background-color: #0a0f1e !important;
+.table thead th {
+  background-color: var(--bg-table-header) !important;
+  color: var(--text-secondary) !important;
+  border-color: var(--border-color) !important;
 }
 
-/* ============================================
-   ALL HEADERS - DARK MODE
-   ============================================ */
-.dark-mode h1,
-.dark-mode h2,
-.dark-mode h3,
-.dark-mode h4,
-.dark-mode h5,
-.dark-mode h6,
-.dark-mode .h1,
-.dark-mode .h2,
-.dark-mode .h3,
-.dark-mode .h4,
-.dark-mode .h5,
-.dark-mode .h6,
-.dark-mode .fw-bold,
-.dark-mode .fw-bold.mb-1,
-.dark-mode .fw-bold.mb-0,
-.dark-mode .page-title,
-.dark-mode .page-header h4,
-.dark-mode .page-header .h4 {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode p,
-.dark-mode .text-secondary,
-.dark-mode .text-secondary.small,
-.dark-mode .text-secondary.mb-0,
-.dark-mode .text-secondary.mb-1,
-.dark-mode .page-subtitle,
-.dark-mode .page-header p,
-.dark-mode .page-header .text-secondary,
-.dark-mode .page-header .text-muted {
-  color: #cbd5e1 !important;
-}
-
-.dark-mode .text-muted {
-  color: #94a3b8 !important;
-}
-
-/* ============================================
-   ALL CARDS - DARK
-   ============================================ */
-.dark-mode .card {
-  background-color: #1a2332 !important;
-  border: 1px solid #2d3748 !important;
-  border-radius: 16px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
-}
-
-.dark-mode .card-body {
+.table td,
+.table tbody td,
+.table tr td {
+  color: var(--text-primary) !important;
   background-color: transparent !important;
-  color: #f1f5f9 !important;
+  border-color: var(--border-color) !important;
 }
 
-.dark-mode .card-header {
-  background-color: #0f172a !important;
-  border-bottom: 1px solid #334155 !important;
-  color: #f1f5f9 !important;
+.table tbody tr {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
 }
 
-.dark-mode .card-footer {
-  background-color: #0f172a !important;
-  border-top: 1px solid #334155 !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .card-title {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .card-text {
-  color: #cbd5e1 !important;
+.table-hover tbody tr:hover {
+  background-color: var(--bg-hover) !important;
 }
 
 /* ============================================
-   ALL TABLES - DARK (COMPLETE FIX)
+   ALL FORMS - FIXED
    ============================================ */
-.dark-mode .table {
-  --bs-table-color: #f1f5f9 !important;
-  --bs-table-bg: transparent !important;
-  --bs-table-striped-color: #f1f5f9 !important;
-  --bs-table-striped-bg: rgba(255, 255, 255, 0.02) !important;
-  --bs-table-hover-color: #f1f5f9 !important;
-  --bs-table-hover-bg: rgba(255, 255, 255, 0.05) !important;
-  color: #f1f5f9 !important;
-  background-color: transparent !important;
+.form-control {
+  background-color: var(--bg-input) !important;
+  color: var(--text-primary) !important;
+  border: 1.5px solid var(--border-color) !important;
+  border-radius: 8px !important;
 }
 
-.dark-mode .table thead {
-  background-color: #0f172a !important;
-}
-
-.dark-mode .table thead th {
-  background-color: #1e293b !important;
-  color: #cbd5e1 !important;
-  border-color: #334155 !important;
-}
-
-.dark-mode .table td,
-.dark-mode .table tbody td,
-.dark-mode .table tr td,
-.dark-mode table td,
-.dark-mode tbody td,
-.dark-mode tr td,
-.dark-mode .table .td {
-  color: #f1f5f9 !important;
-  background-color: transparent !important;
-  border-color: #334155 !important;
-}
-
-.dark-mode .table tbody tr {
-  background-color: transparent !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .table-hover tbody tr:hover,
-.dark-mode .table-hover tbody tr:hover td {
-  background-color: rgba(255, 255, 255, 0.05) !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .table-striped tbody tr:nth-of-type(odd),
-.dark-mode .table-striped tbody tr:nth-of-type(odd) td {
-  background-color: rgba(255, 255, 255, 0.02) !important;
-}
-
-.dark-mode .table td *,
-.dark-mode .table td span,
-.dark-mode .table td div,
-.dark-mode .table td a,
-.dark-mode .table td .fw-bold,
-.dark-mode .table td .fw-medium,
-.dark-mode .table td .text-secondary,
-.dark-mode .table td .text-muted,
-.dark-mode .table td small,
-.dark-mode .table td .small {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .table td a,
-.dark-mode .table td a:visited,
-.dark-mode .table td a:link {
-  color: #818cf8 !important;
-}
-
-.dark-mode .table td a:hover {
-  color: #a5b4fc !important;
-}
-
-.dark-mode .table td .badge {
-  color: #ffffff !important;
-}
-
-.dark-mode .table td .badge.bg-success {
-  background-color: #059669 !important;
-}
-
-.dark-mode .table td .badge.bg-danger {
-  background-color: #dc2626 !important;
-}
-
-.dark-mode .table td .badge.bg-warning {
-  background-color: #d97706 !important;
-  color: #0f172a !important;
-}
-
-.dark-mode .table td .badge.bg-info {
-  background-color: #2563eb !important;
-}
-
-.dark-mode .table td .badge.bg-primary {
-  background-color: #4f46e5 !important;
-}
-
-.dark-mode .table td .badge.bg-secondary {
-  background-color: #475569 !important;
-}
-
-.dark-mode .table td .btn {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .table td .btn-outline-primary {
-  color: #818cf8 !important;
-  border-color: #818cf8 !important;
-}
-
-.dark-mode .table td .btn-outline-primary:hover {
-  background-color: #818cf8 !important;
-  color: #0f172a !important;
-}
-
-.dark-mode .table td .btn-outline-secondary {
-  color: #94a3b8 !important;
-  border-color: #94a3b8 !important;
-}
-
-.dark-mode .table td .btn-outline-danger {
-  color: #f87171 !important;
-  border-color: #f87171 !important;
-}
-
-.dark-mode .table td .btn-outline-danger:hover {
-  background-color: #f87171 !important;
-  color: #0f172a !important;
-}
-
-.dark-mode .table td .text-success {
-  color: #34d399 !important;
-}
-
-.dark-mode .table td .text-danger {
-  color: #f87171 !important;
-}
-
-.dark-mode .table td .text-warning {
-  color: #fbbf24 !important;
-}
-
-.dark-mode .table td .text-info {
-  color: #60a5fa !important;
-}
-
-.dark-mode .table td .text-secondary {
-  color: #cbd5e1 !important;
-}
-
-.dark-mode .table td .text-muted {
-  color: #94a3b8 !important;
-}
-
-/* ============================================
-   ALL FORMS - DARK
-   ============================================ */
-.dark-mode .form-control {
-  background-color: #1e293b !important;
-  color: #f1f5f9 !important;
-  border: 1.5px solid #334155 !important;
-  border-radius: 10px !important;
-}
-
-.dark-mode .form-control:focus {
+.form-control:focus {
   border-color: #6366f1 !important;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
 }
 
-.dark-mode .form-control::placeholder {
-  color: #94a3b8 !important;
+.form-control::placeholder {
+  color: var(--text-muted) !important;
 }
 
-.dark-mode .form-select {
-  background-color: #1e293b !important;
-  color: #f1f5f9 !important;
-  border: 1.5px solid #334155 !important;
+.form-select {
+  background-color: var(--bg-input) !important;
+  color: var(--text-primary) !important;
+  border: 1.5px solid var(--border-color) !important;
 }
 
-.dark-mode .form-label {
-  color: #cbd5e1 !important;
+.form-label {
+  color: var(--text-secondary) !important;
 }
 
-.dark-mode .input-group-text {
-  background-color: #1e293b !important;
-  color: #94a3b8 !important;
-  border-color: #334155 !important;
+.input-group-text {
+  background-color: var(--bg-input) !important;
+  color: var(--text-muted) !important;
+  border-color: var(--border-color) !important;
 }
 
 /* ============================================
-   ALL MODALS - DARK
+   ALL MODALS - FIXED
    ============================================ */
-.dark-mode .modal-content {
-  background-color: #1a2332 !important;
-  border: 1px solid #334155 !important;
+.modal-content {
+  background-color: var(--bg-modal) !important;
+  border: 1px solid var(--border-color) !important;
   border-radius: 16px !important;
 }
 
-.dark-mode .modal-header {
-  background-color: #0f172a !important;
-  border-bottom: 1px solid #334155 !important;
-  color: #f1f5f9 !important;
+.modal-header {
+  background-color: var(--bg-modal) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
 }
 
-.dark-mode .modal-body {
-  color: #f1f5f9 !important;
+.modal-body {
+  background-color: var(--bg-modal) !important;
+  color: var(--text-primary) !important;
 }
 
-.dark-mode .modal-footer {
-  background-color: #0f172a !important;
-  border-top: 1px solid #334155 !important;
-  color: #f1f5f9 !important;
+.modal-footer {
+  background-color: var(--bg-modal) !important;
+  border-top: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
 }
 
-.dark-mode .modal-title {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .btn-close {
-  filter: invert(1) grayscale(100%) brightness(200%);
+.modal-title {
+  color: var(--text-primary) !important;
 }
 
 /* ============================================
-   ALL DROPDOWNS - DARK
+   NAVBAR - FIXED
    ============================================ */
-.dark-mode .dropdown-menu {
-  background-color: #1a2332 !important;
-  border: 1px solid #334155 !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
-}
-
-.dark-mode .dropdown-item {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .dropdown-item:hover {
-  background-color: #2d3748 !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .dropdown-divider {
-  border-color: #334155 !important;
+.navbar {
+  background-color: var(--bg-navbar) !important;
+  border-bottom: 1px solid var(--border-color) !important;
 }
 
 /* ============================================
-   NAVBAR - DARK
+   SIDEBAR - FIXED
    ============================================ */
-.dark-mode .navbar {
-  background-color: #0f172a !important;
-  border-bottom: 1px solid #334155 !important;
+.sidebar-container {
+  background-color: var(--bg-sidebar) !important;
+  border-right: 1px solid var(--border-color) !important;
+  height: 100vh;
+  overflow-y: auto;
 }
 
-.dark-mode .navbar .nav-link {
-  color: #cbd5e1 !important;
+.sidebar-link {
+  color: var(--text-secondary) !important;
 }
 
-.dark-mode .navbar .nav-link:hover {
-  color: #f1f5f9 !important;
+.sidebar-link:hover {
+  background-color: var(--bg-hover) !important;
+  color: var(--text-primary) !important;
 }
 
-.dark-mode .navbar .navbar-brand {
-  color: #f1f5f9 !important;
-}
-
-/* ============================================
-   SIDEBAR - DARK
-   ============================================ */
-.dark-mode .sidebar-container {
-  background-color: #0f172a !important;
-  border-right: 1px solid #334155 !important;
-}
-
-.dark-mode .sidebar-link {
-  color: #94a3b8 !important;
-}
-
-.dark-mode .sidebar-link:hover {
-  background-color: #1e293b !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .sidebar-link.active {
+.sidebar-link.active {
   background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
   color: #ffffff !important;
 }
 
 /* ============================================
-   ALL BADGES - DARK
+   MOBILE RESPONSIVE - FIXED
    ============================================ */
-.dark-mode .badge {
-  color: #ffffff !important;
-}
-
-.dark-mode .badge.bg-success {
-  background-color: #059669 !important;
-}
-
-.dark-mode .badge.bg-danger {
-  background-color: #dc2626 !important;
-}
-
-.dark-mode .badge.bg-warning {
-  background-color: #d97706 !important;
-  color: #0f172a !important;
-}
-
-.dark-mode .badge.bg-info {
-  background-color: #2563eb !important;
-}
-
-.dark-mode .badge.bg-primary {
-  background-color: #4f46e5 !important;
-}
-
-.dark-mode .badge.bg-secondary {
-  background-color: #475569 !important;
-}
-
-.dark-mode .badge.bg-light {
-  background-color: #2d3748 !important;
-  color: #f1f5f9 !important;
-}
-
-/* ============================================
-   ALL ALERTS - DARK
-   ============================================ */
-.dark-mode .alert {
-  background-color: #1a2332 !important;
-  border: 1px solid #334155 !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .alert-success {
-  background-color: #064e3b !important;
-  border-color: #065f46 !important;
-  color: #6ee7b7 !important;
-}
-
-.dark-mode .alert-danger {
-  background-color: #7f1d1d !important;
-  border-color: #991b1b !important;
-  color: #fca5a5 !important;
-}
-
-.dark-mode .alert-warning {
-  background-color: #78350f !important;
-  border-color: #92400e !important;
-  color: #fcd34d !important;
-}
-
-.dark-mode .alert-info {
-  background-color: #1e3a5f !important;
-  border-color: #1e40af !important;
-  color: #93c5fd !important;
-}
-
-/* ============================================
-   ALL PAGINATION - DARK
-   ============================================ */
-.dark-mode .page-link {
-  background-color: #1a2332 !important;
-  border-color: #334155 !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .page-link:hover {
-  background-color: #2d3748 !important;
-}
-
-.dark-mode .page-item.active .page-link {
-  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
-  border-color: #4f46e5 !important;
-  color: #ffffff !important;
-}
-
-.dark-mode .page-item.disabled .page-link {
-  background-color: #0f172a !important;
-  border-color: #334155 !important;
-  color: #64748b !important;
-}
-
-/* ============================================
-   ALL NAV TABS - DARK
-   ============================================ */
-.dark-mode .nav-tabs .nav-link {
-  color: #94a3b8 !important;
-}
-
-.dark-mode .nav-tabs .nav-link.active {
-  background-color: #1a2332 !important;
-  border-color: #334155 !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .nav-tabs {
-  border-color: #334155 !important;
-}
-
-/* ============================================
-   ALL LIST GROUPS - DARK
-   ============================================ */
-.dark-mode .list-group-item {
-  background-color: #1a2332 !important;
-  border-color: #334155 !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .list-group-item:hover {
-  background-color: #2d3748 !important;
-}
-
-/* ============================================
-   ALL PROGRESS BARS - DARK
-   ============================================ */
-.dark-mode .progress {
-  background-color: #2d3748 !important;
-}
-
-.dark-mode .progress-bar {
-  background: linear-gradient(90deg, #4f46e5, #7c3aed) !important;
-}
-
-/* ============================================
-   ALL BORDERS - DARK
-   ============================================ */
-.dark-mode .border,
-.dark-mode .border-top,
-.dark-mode .border-bottom,
-.dark-mode .border-start,
-.dark-mode .border-end {
-  border-color: #334155 !important;
-}
-
-.dark-mode .border-light {
-  border-color: #2d3748 !important;
-}
-
-.dark-mode .border-secondary {
-  border-color: #334155 !important;
-}
-
-/* ============================================
-   ALL BACKGROUND UTILITIES - DARK
-   ============================================ */
-.dark-mode .bg-white {
-  background-color: #1a2332 !important;
-}
-
-.dark-mode .bg-light {
-  background-color: #1e293b !important;
-}
-
-.dark-mode .bg-dark {
-  background-color: #0f172a !important;
-}
-
-.dark-mode .bg-body {
-  background-color: #0a0f1e !important;
-}
-
-.dark-mode .bg-transparent {
-  background-color: transparent !important;
-}
-
-/* ============================================
-   ALL TEXT COLORS - DARK
-   ============================================ */
-.dark-mode .text-dark {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .text-light {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .text-white {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .text-black {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .text-body {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .text-secondary {
-  color: #cbd5e1 !important;
-}
-
-.dark-mode .text-muted {
-  color: #94a3b8 !important;
-}
-
-.dark-mode .text-success {
-  color: #34d399 !important;
-}
-
-.dark-mode .text-danger {
-  color: #f87171 !important;
-}
-
-.dark-mode .text-warning {
-  color: #fbbf24 !important;
-}
-
-.dark-mode .text-info {
-  color: #60a5fa !important;
-}
-
-/* ============================================
-   ALL SHADOWS - DARK
-   ============================================ */
-.dark-mode .shadow-sm {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
-}
-
-.dark-mode .shadow {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
-}
-
-.dark-mode .shadow-lg {
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
-}
-
-/* ============================================
-   ALL BUTTONS - DARK
-   ============================================ */
-.dark-mode .btn-light {
-  background-color: #1e293b !important;
-  border-color: #334155 !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .btn-light:hover {
-  background-color: #2d3748 !important;
-}
-
-.dark-mode .btn-outline-light {
-  border-color: #cbd5e1 !important;
-  color: #cbd5e1 !important;
-}
-
-.dark-mode .btn-outline-light:hover {
-  background-color: #cbd5e1 !important;
-  color: #0f172a !important;
-}
-
-.dark-mode .btn-outline-secondary {
-  color: #94a3b8 !important;
-  border-color: #94a3b8 !important;
-}
-
-.dark-mode .btn-outline-secondary:hover {
-  background-color: #94a3b8 !important;
-  color: #0f172a !important;
-}
-
-/* ============================================
-   SCROLLBAR - DARK
-   ============================================ */
-.dark-mode ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.dark-mode ::-webkit-scrollbar-track {
-  background: #0f172a;
-  border-radius: 10px;
-}
-
-.dark-mode ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #4f46e5, #7c3aed);
-  border-radius: 10px;
-}
-
-.dark-mode ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #6366f1, #8b5cf6);
-}
-
-/* ============================================
-   TOASTS - DARK
-   ============================================ */
-.dark-mode .toast {
-  background-color: #1a2332 !important;
-  border: 1px solid #334155 !important;
-}
-
-.dark-mode .toast-header {
-  background-color: #0f172a !important;
-  border-bottom: 1px solid #334155 !important;
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .toast-body {
-  color: #f1f5f9 !important;
-}
-
-/* ============================================
-   REACT DATEPICKER - DARK
-   ============================================ */
-.dark-mode .react-datepicker {
-  background-color: #1a2332 !important;
-  border-color: #334155 !important;
-}
-
-.dark-mode .react-datepicker__header {
-  background-color: #0f172a !important;
-  border-color: #334155 !important;
-}
-
-.dark-mode .react-datepicker__current-month,
-.dark-mode .react-datepicker__day-name,
-.dark-mode .react-datepicker__day {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .react-datepicker__day:hover {
-  background-color: #2d3748 !important;
-}
-
-.dark-mode .react-datepicker__day--selected {
-  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
-  color: #ffffff !important;
-}
-
-.dark-mode .react-datepicker__day--keyboard-selected {
-  background: #4f46e5 !important;
-}
-
-/* ============================================
-   RESPONSIVE TABLES - DARK
-   ============================================ */
-@media (max-width: 768px) {
-  .dark-mode .table-responsive {
-    border-color: #334155 !important;
+@media (max-width: 991px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1050;
+    background-color: var(--bg-sidebar) !important;
+    border-right: 1px solid var(--border-color) !important;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+  }
+
+  .sidebar-overlay.open {
+    display: block;
+  }
+
+  .content-area {
+    padding: 0.75rem !important;
+  }
+
+  /* ✅ Mobile Cards - Force white background in light mode */
+  .card {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+  }
+
+  .card-body {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+  }
+
+  .bg-light {
+    background-color: var(--bg-secondary) !important;
+  }
+
+  /* ✅ Mobile Tables - Force proper colors */
+  .table {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+  }
+
+  .table td {
+    color: var(--text-primary) !important;
+  }
+
+  /* ✅ Mobile Dropdown - Fix */
+  .dropdown-menu {
+    background-color: var(--bg-dropdown) !important;
+    border: 1px solid var(--border-color) !important;
+  }
+
+  .dropdown-item {
+    color: var(--text-primary) !important;
+  }
+
+  .dropdown-item:hover {
+    background-color: var(--bg-hover) !important;
+    color: var(--text-primary) !important;
   }
 }
 
 /* ============================================
-   PAYMENT COLLECTION CARD - DARK MODE FIX
+   MOBILE EXTRA SMALL ( < 576px )
    ============================================ */
+@media (max-width: 576px) {
+  .content-area {
+    padding: 0.5rem !important;
+  }
 
-/* ✅ Payment Collection Card */
-.dark-mode .payment-collection-card,
-.dark-mode .payment-collection-card .card,
-.dark-mode .payment-collection-card .card-body {
-  background-color: #1a2332 !important;
-  color: #f1f5f9 !important;
-  border-color: #2d3748 !important;
+  .card {
+    border-radius: 10px !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .card-body {
+    padding: 0.75rem !important;
+  }
+
+  .table td,
+  .table th {
+    padding: 0.4rem 0.3rem !important;
+    font-size: 12px !important;
+  }
+
+  .btn-sm {
+    padding: 0.15rem 0.3rem !important;
+    font-size: 11px !important;
+  }
+
+  .badge {
+    font-size: 10px !important;
+    padding: 0.15rem 0.4rem !important;
+  }
+
+  .fs-3 {
+    font-size: 1.25rem !important;
+  }
+
+  .fs-4 {
+    font-size: 1.1rem !important;
+  }
+
+  .fs-5 {
+    font-size: 0.95rem !important;
+  }
+
+  .fw-bold.fs-2 {
+    font-size: 1.5rem !important;
+  }
+
+  .payment-item {
+    padding: 0.5rem !important;
+  }
+
+  .payment-item .fw-bold {
+    font-size: 13px !important;
+  }
+
+  .payment-item .text-secondary {
+    font-size: 11px !important;
+  }
 }
 
-/* ✅ Payment items inside the card */
-.dark-mode .payment-item,
-.dark-mode .payment-collection-card .d-flex {
-  color: #f1f5f9 !important;
+/* ============================================
+   SCROLLBAR - FIXED
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-/* ✅ Payment amounts */
-.dark-mode .payment-collection-card .fw-bold,
-.dark-mode .payment-collection-card .text-success,
-.dark-mode .payment-collection-card .text-primary,
-.dark-mode .payment-collection-card .text-info {
-  color: #f1f5f9 !important;
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 10px;
 }
 
-/* ✅ Cash - Green text in dark mode */
-.dark-mode .payment-collection-card .text-success {
-  color: #34d399 !important;
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4f46e5, #7c3aed);
+  border-radius: 10px;
 }
 
-/* ✅ KPay - Purple/Blue text in dark mode */
-.dark-mode .payment-collection-card .text-primary {
-  color: #818cf8 !important;
-}
-
-/* ✅ Wave Pay - Light Blue text in dark mode */
-.dark-mode .payment-collection-card .text-info {
-  color: #60a5fa !important;
-}
-
-/* ✅ Payment labels */
-.dark-mode .payment-collection-card .text-secondary,
-.dark-mode .payment-collection-card small {
-  color: #94a3b8 !important;
-}
-
-/* ✅ Total summary at bottom */
-.dark-mode .payment-collection-card .border-top {
-  border-color: #334155 !important;
-}
-
-.dark-mode .payment-collection-card .border-top .text-secondary {
-  color: #94a3b8 !important;
-}
-
-.dark-mode .payment-collection-card .border-top .fw-bold {
-  color: #f1f5f9 !important;
-}
-
-/* ✅ Payment method backgrounds */
-.dark-mode .payment-collection-card .bg-light {
-  background-color: #1e293b !important;
-}
-
-.dark-mode .payment-collection-card .rounded {
-  background-color: #1e293b !important;
-}
-
-/* ✅ Force all text in payment card */
-.dark-mode .payment-collection-card * {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .payment-collection-card .text-success {
-  color: #34d399 !important;
-}
-
-.dark-mode .payment-collection-card .text-primary {
-  color: #818cf8 !important;
-}
-
-.dark-mode .payment-collection-card .text-info {
-  color: #60a5fa !important;
-}
-
-.dark-mode .payment-collection-card .text-secondary {
-  color: #94a3b8 !important;
-}
-
-.dark-mode .payment-collection-card .text-muted {
-  color: #94a3b8 !important;
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6366f1, #8b5cf6);
 }
 
 /* ============================================
@@ -989,103 +488,400 @@ body {
 }
 
 /* ============================================
-   PAYMENT COLLECTION CARD - DARK MODE FIX
+   PAYMENT COLLECTION CARD - FIXED
    ============================================ */
-
-/* ✅ Payment Collection Card - Force white text in dark mode */
-.dark-mode .payment-collection-card,
-.dark-mode .payment-collection-card .card,
-.dark-mode .payment-collection-card .card-body,
-.dark-mode .payment-collection-card h6,
-.dark-mode .payment-collection-card .fw-bold,
-.dark-mode .payment-collection-card .text-secondary,
-.dark-mode .payment-collection-card small,
-.dark-mode .payment-collection-card .text-success,
-.dark-mode .payment-collection-card .text-primary,
-.dark-mode .payment-collection-card .text-info,
-.dark-mode .payment-collection-card span,
-.dark-mode .payment-collection-card div {
-  color: #f1f5f9 !important;
+.payment-collection-card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
 }
 
-/* ✅ Payment item backgrounds in dark mode */
-.dark-mode .payment-collection-card .rounded {
+.payment-item {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+}
+
+.payment-item .fw-bold {
+  color: var(--text-primary) !important;
+}
+
+.payment-item .text-secondary {
+  color: var(--text-muted) !important;
+}
+
+.payment-item .text-success {
+  color: #22c55e !important;
+}
+
+.payment-item .text-primary {
+  color: #6366f1 !important;
+}
+
+.payment-item .text-info {
+  color: #06b6d4 !important;
+}
+
+/* ============================================
+   DARK MODE OVERRIDES FOR MOBILE
+   ============================================ */
+.dark-mode .payment-item {
   background-color: #1e293b !important;
   border-color: #334155 !important;
 }
 
-/* ✅ Cash text color */
-.dark-mode .payment-collection-card .text-success {
-  color: #34d399 !important;
-}
-
-/* ✅ KBZ Pay text color */
-.dark-mode .payment-collection-card .text-primary {
-  color: #818cf8 !important;
-}
-
-/* ✅ Wave Pay text color */
-.dark-mode .payment-collection-card .text-info {
-  color: #60a5fa !important;
-}
-
-/* ✅ Total summary */
-.dark-mode .payment-collection-card .border-top {
-  border-color: #334155 !important;
-}
-
-.dark-mode .payment-collection-card .border-top .text-secondary {
-  color: #94a3b8 !important;
-}
-
-.dark-mode .payment-collection-card .border-top .fw-bold {
+.dark-mode .payment-item .fw-bold {
   color: #f1f5f9 !important;
 }
 
-/* ✅ Force all text inside payment card */
-.dark-mode .payment-collection-card * {
-  color: #f1f5f9 !important;
-}
-
-.dark-mode .payment-collection-card .text-success {
-  color: #34d399 !important;
-}
-
-.dark-mode .payment-collection-card .text-primary {
-  color: #818cf8 !important;
-}
-
-.dark-mode .payment-collection-card .text-info {
-  color: #60a5fa !important;
-}
-
-.dark-mode .payment-collection-card .text-secondary {
+.dark-mode .payment-item .text-secondary {
   color: #94a3b8 !important;
 }
 
-.dark-mode .payment-collection-card .text-muted {
-  color: #94a3b8 !important;
+.dark-mode .bg-light {
+  background-color: #1e293b !important;
 }
 
-/* Mobile Table Styles */
+.dark-mode .bg-white {
+  background-color: #1a2332 !important;
+}
+
+/* ✅ Force light mode on mobile */
 @media (max-width: 576px) {
-  .table-responsive {
-    border-radius: 0;
+  .dark-mode .payment-item .fw-bold {
+    color: #f1f5f9 !important;
   }
-  
-  .table td, 
-  .table th {
-    padding: 0.5rem 0.4rem;
-    font-size: 12px;
+}
+
+/* ✅ Ensure consistent background in all modes */
+.container-fluid,
+.container,
+.row,
+.col,
+.col-* {
+  background-color: transparent !important;
+}
+
+/* ✅ Fix for Bootstrap bg classes */
+.bg-light {
+  background-color: var(--bg-secondary) !important;
+}
+
+.bg-white {
+  background-color: var(--bg-card) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.text-primary {
+  color: #6366f1 !important;
+}
+
+/* ✅ Dark mode support for all pages */
+.dark-mode .bg-light {
+  background-color: #1e293b !important;
+}
+
+.dark-mode .bg-white {
+  background-color: #1a2332 !important;
+}
+
+.dark-mode .bg-body {
+  background-color: #0a0f1e !important;
+}
+
+.dark-mode .text-secondary {
+  color: #cbd5e1 !important;
+}
+
+.dark-mode .text-muted {
+  color: #94a3b8 !important;
+}
+
+/* ============================================
+   ADMIN DASHBOARD MOBILE FIX
+   ============================================ */
+@media (max-width: 576px) {
+  .admin-dashboard .card {
+    margin-bottom: 0.5rem !important;
   }
-  
-  .btn-sm {
-    padding: 0.2rem 0.4rem;
-    font-size: 12px;
+
+  .admin-dashboard .card-body {
+    padding: 0.5rem !important;
   }
-  
-  .badge {
-    font-size: 10px;
-    padding: 0.2rem 0.4rem;
+
+  .admin-dashboard .table td,
+  .admin-dashboard .table th {
+    padding: 0.3rem 0.2rem !important;
+    font-size: 11px !important;
+  }
+
+  .admin-dashboard .badge {
+    font-size: 9px !important;
+    padding: 0.1rem 0.3rem !important;
+  }
+
+  .admin-dashboard .btn-sm {
+    padding: 0.1rem 0.2rem !important;
+    font-size: 10px !important;
+  }
+
+  .admin-dashboard .payment-item {
+    padding: 0.4rem !important;
+  }
+
+  .admin-dashboard .payment-item .fw-bold {
+    font-size: 12px !important;
+  }
+
+  .admin-dashboard .payment-item .text-secondary {
+    font-size: 10px !important;
+  }
+
+  /* Status cards on mobile */
+  .admin-dashboard .status-card .badge {
+    font-size: 8px !important;
+    padding: 0.1rem 0.2rem !important;
+  }
+
+  .admin-dashboard .status-card .fw-bold {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* ✅ Mobile payment collection fix */
+@media (max-width: 576px) {
+  .payment-collection-card .payment-item {
+    padding: 0.4rem 0.5rem !important;
+  }
+
+  .payment-collection-card .payment-item .d-flex.gap-3 {
+    gap: 0.5rem !important;
+  }
+
+  .payment-collection-card .payment-item .rounded-circle {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .payment-collection-card .payment-item .rounded-circle span {
+    font-size: 16px !important;
+  }
+
+  .payment-collection-card .payment-item .fw-bold {
+    font-size: 12px !important;
+  }
+
+  .payment-collection-card .payment-item .text-secondary {
+    font-size: 10px !important;
+  }
+}
+
+/* ✅ Top customers mobile fix */
+@media (max-width: 576px) {
+  .top-customers-table td,
+  .top-customers-table th {
+    padding: 0.3rem 0.2rem !important;
+    font-size: 11px !important;
+  }
+
+  .top-customers-table .fw-bold {
+    font-size: 11px !important;
+  }
+}
+
+/* ✅ Recent orders mobile fix */
+@media (max-width: 576px) {
+  .recent-orders-table td,
+  .recent-orders-table th {
+    padding: 0.3rem 0.2rem !important;
+    font-size: 11px !important;
+  }
+
+  .recent-orders-table .fw-medium {
+    font-size: 11px !important;
+  }
+
+  .recent-orders-table .badge {
+    font-size: 9px !important;
+    padding: 0.1rem 0.3rem !important;
+  }
+}
+
+/* ✅ Navbar mobile fix */
+@media (max-width: 576px) {
+  .navbar .fs-6.px-3.py-2 {
+    font-size: 12px !important;
+    padding: 0.3rem 0.6rem !important;
+  }
+
+  .navbar .btn-outline-secondary {
+    font-size: 12px !important;
+    padding: 0.2rem 0.5rem !important;
+  }
+
+  .navbar .dropdown-toggle {
+    font-size: 12px !important;
+  }
+
+  .navbar .btn-link {
+    font-size: 1rem !important;
+  }
+}
+
+/* ✅ Sidebar mobile fix */
+@media (max-width: 576px) {
+  .sidebar-container .sidebar-link {
+    font-size: 13px !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+
+  .sidebar-container .sidebar-link svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .sidebar-container .fw-bold.fs-5 {
+    font-size: 1rem !important;
+  }
+
+  .sidebar-container .badge {
+    font-size: 9px !important;
+  }
+}
+
+/* ============================================
+   TOAST NOTIFICATIONS - MOBILE FIX
+   ============================================ */
+@media (max-width: 576px) {
+  .react-hot-toast {
+    font-size: 13px !important;
+  }
+
+  .react-hot-toast div {
+    padding: 0.5rem 0.75rem !important;
+  }
+}
+
+/* ============================================
+   DARK MODE - MOBILE SPECIFIC
+   ============================================ */
+@media (max-width: 576px) {
+  .dark-mode .card {
+    background-color: #1a2332 !important;
+    border-color: #2d3748 !important;
+  }
+
+  .dark-mode .card-body {
+    color: #f1f5f9 !important;
+  }
+
+  .dark-mode .bg-light {
+    background-color: #1e293b !important;
+  }
+
+  .dark-mode .bg-white {
+    background-color: #1a2332 !important;
+  }
+
+  .dark-mode .table td {
+    color: #f1f5f9 !important;
+  }
+
+  .dark-mode .table thead th {
+    background-color: #1e293b !important;
+    color: #94a3b8 !important;
+  }
+
+  .dark-mode .text-secondary {
+    color: #94a3b8 !important;
+  }
+
+  .dark-mode .text-muted {
+    color: #64748b !important;
+  }
+
+  .dark-mode .payment-item {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+  }
+
+  .dark-mode .payment-item .fw-bold {
+    color: #f1f5f9 !important;
+  }
+
+  .dark-mode .payment-item .text-secondary {
+    color: #94a3b8 !important;
+  }
+}
+
+/* ============================================
+   LIGHT MODE - MOBILE SPECIFIC (Force white)
+   ============================================ */
+@media (max-width: 576px) {
+  /* Force white background on mobile light mode */
+  :root:not(.dark-mode) .card {
+    background-color: #ffffff !important;
+    border-color: #e2e8f0 !important;
+  }
+
+  :root:not(.dark-mode) .card-body {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  :root:not(.dark-mode) .bg-light {
+    background-color: #f8fafc !important;
+  }
+
+  :root:not(.dark-mode) .bg-white {
+    background-color: #ffffff !important;
+  }
+
+  :root:not(.dark-mode) .table td {
+    color: #0f172a !important;
+  }
+
+  :root:not(.dark-mode) .table thead th {
+    background-color: #f8fafc !important;
+    color: #475569 !important;
+  }
+
+  :root:not(.dark-mode) .text-secondary {
+    color: #475569 !important;
+  }
+
+  :root:not(.dark-mode) .text-muted {
+    color: #94a3b8 !important;
+  }
+
+  :root:not(.dark-mode) .payment-item {
+    background-color: #f8fafc !important;
+    border-color: #e2e8f0 !important;
+  }
+
+  :root:not(.dark-mode) .payment-item .fw-bold {
+    color: #0f172a !important;
+  }
+
+  :root:not(.dark-mode) .payment-item .text-secondary {
+    color: #475569 !important;
+  }
+
+  :root:not(.dark-mode) .sidebar-container {
+    background-color: #ffffff !important;
+  }
+
+  :root:not(.dark-mode) .navbar {
+    background-color: #ffffff !important;
+  }
+
+  :root:not(.dark-mode) .dropdown-menu {
+    background-color: #ffffff !important;
+  }
+
+  :root:not(.dark-mode) .dropdown-item {
+    color: #0f172a !important;
   }
 }
