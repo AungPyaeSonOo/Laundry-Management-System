@@ -131,3 +131,152 @@
 ---
 
 ## 📁 Project Structure
+
+laundry-management-system/
+│
+├── backend/
+│ ├── src/
+│ │ ├── config/
+│ │ │ └── database.js
+│ │ ├── controllers/
+│ │ │ ├── auth.controller.js
+│ │ │ ├── order.controller.js
+│ │ │ ├── customer.controller.js
+│ │ │ ├── expense.controller.js
+│ │ │ ├── inventory.controller.js
+│ │ │ ├── employee.controller.js
+│ │ │ ├── user.controller.js
+│ │ │ ├── report.controller.js
+│ │ │ ├── dashboard.controller.js
+│ │ │ └── clothingType.controller.js
+│ │ ├── models/
+│ │ │ ├── index.js
+│ │ │ ├── User.js
+│ │ │ ├── Customer.js
+│ │ │ ├── LaundryOrder.js
+│ │ │ ├── OrderItem.js
+│ │ │ ├── ClothingType.js
+│ │ │ ├── Employee.js
+│ │ │ ├── Expense.js
+│ │ │ ├── ExpenseCategory.js
+│ │ │ ├── Inventory.js
+│ │ │ ├── InventoryTransaction.js
+│ │ │ ├── MachineMaintenance.js
+│ │ │ ├── DailyReport.js
+│ │ │ ├── OrderStatusHistory.js
+│ │ │ ├── DeliveryTracking.js
+│ │ │ └── Payment.js
+│ │ ├── routes/
+│ │ │ ├── auth.routes.js
+│ │ │ ├── order.routes.js
+│ │ │ ├── customer.routes.js
+│ │ │ ├── expense.routes.js
+│ │ │ ├── inventory.routes.js
+│ │ │ ├── employee.routes.js
+│ │ │ ├── user.routes.js
+│ │ │ ├── report.routes.js
+│ │ │ ├── dashboard.routes.js
+│ │ │ └── clothingType.routes.js
+│ │ ├── middleware/
+│ │ │ ├── auth.middleware.js
+│ │ │ ├── error.middleware.js
+│ │ │ └── validator.middleware.js
+│ │ ├── utils/
+│ │ │ ├── responseHandler.js
+│ │ │ ├── generateOrderNumber.js
+│ │ │ └── validators.js
+│ │ └── app.js
+│ ├── server.js
+│ ├── package.json
+│ └── .env.example
+│
+├── frontend/
+│ ├── src/
+│ │ ├── api/
+│ │ │ ├── axios.config.js
+│ │ │ ├── auth.api.js
+│ │ │ ├── order.api.js
+│ │ │ ├── customer.api.js
+│ │ │ ├── expense.api.js
+│ │ │ ├── inventory.api.js
+│ │ │ ├── employee.api.js
+│ │ │ ├── user.api.js
+│ │ │ ├── report.api.js
+│ │ │ ├── dashboard.api.js
+│ │ │ └── clothingType.api.js
+│ │ ├── components/
+│ │ │ ├── common/
+│ │ │ │ ├── Navbar.jsx
+│ │ │ │ ├── Sidebar.jsx
+│ │ │ │ ├── Loading.jsx
+│ │ │ │ ├── ProtectedRoute.jsx
+│ │ │ │ └── OrderStatusBadge.jsx
+│ │ │ ├── dashboard/
+│ │ │ │ ├── StatsCard.jsx
+│ │ │ │ ├── IncomeChart.jsx
+│ │ │ │ ├── StatusPieChart.jsx
+│ │ │ │ ├── RecentOrders.jsx
+│ │ │ │ └── DeliveryLiveMap.jsx
+│ │ │ ├── orders/
+│ │ │ │ ├── OrderCreate.jsx
+│ │ │ │ ├── OrderDetail.jsx
+│ │ │ │ ├── OrderFilter.jsx
+│ │ │ │ └── AddItemsModal.jsx
+│ │ │ ├── customers/
+│ │ │ │ └── CustomerForm.jsx
+│ │ │ ├── employees/
+│ │ │ │ ├── EmployeeForm.jsx
+│ │ │ │ └── EmployeeDetail.jsx
+│ │ │ ├── users/
+│ │ │ │ └── UserForm.jsx
+│ │ │ └── reports/
+│ │ │ ├── ReportFilters.jsx
+│ │ │ └── SummaryCards.jsx
+│ │ ├── context/
+│ │ │ ├── AuthContext.jsx
+│ │ │ └── ThemeContext.jsx
+│ │ ├── layouts/
+│ │ │ ├── MainLayout.jsx
+│ │ │ └── AuthLayout.jsx
+│ │ ├── pages/
+│ │ │ ├── LoginPage.jsx
+│ │ │ ├── RegisterPage.jsx
+│ │ │ ├── AdminDashboard.jsx
+│ │ │ ├── DashboardPage.jsx
+│ │ │ ├── OrdersPage.jsx
+│ │ │ ├── CustomersPage.jsx
+│ │ │ ├── EmployeesPage.jsx
+│ │ │ ├── UsersPage.jsx
+│ │ │ ├── ExpensesPage.jsx
+│ │ │ ├── InventoryPage.jsx
+│ │ │ ├── ReportsPage.jsx
+│ │ │ ├── ClothingTypesPage.jsx
+│ │ │ ├── ProfilePage.jsx
+│ │ │ ├── DeliveryDashboard.jsx
+│ │ │ ├── DeliveryHistory.jsx
+│ │ │ ├── DeliveryOrderDetail.jsx
+│ │ │ ├── WasherDashboard.jsx
+│ │ │ ├── WasherHistory.jsx
+│ │ │ ├── WasherOrderDetail.jsx
+│ │ │ ├── IronerDashboard.jsx
+│ │ │ ├── IronerHistory.jsx
+│ │ │ ├── IronerOrderDetail.jsx
+│ │ │ ├── PackerDashboard.jsx
+│ │ │ ├── PackerHistory.jsx
+│ │ │ └── PackerOrderDetail.jsx
+│ │ ├── services/
+│ │ │ └── report.service.js
+│ │ ├── styles/
+│ │ │ └── index.css
+│ │ ├── utils/
+│ │ │ └── helpers.js
+│ │ ├── App.jsx
+│ │ └── main.jsx
+│ ├── public/
+│ ├── package.json
+│ ├── vite.config.js
+│ └── .env.example
+│
+├── package.json (Root)
+├── README.md
+└── .gitignore
