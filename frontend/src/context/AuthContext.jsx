@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authLoading, setAuthLoading] = useState(false); // ✅ Login loading state
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -33,10 +34,14 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('user');
       }
     }
-    setLoading(false);
+    // ✅ Simulate loading for animation
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   }, []);
 
   const login = async (username, password) => {
+    setAuthLoading(true); // ✅ Show loading animation
     try {
       const response = await authApi.login({ username, password });
       const { user, token } = response.data.data;
@@ -58,6 +63,8 @@ export const AuthProvider = ({ children }) => {
         success: false, 
         error: error.response?.data?.message || 'Login failed' 
       };
+    } finally {
+      setAuthLoading(false); // ✅ Hide loading animation
     }
   };
 
@@ -73,6 +80,7 @@ export const AuthProvider = ({ children }) => {
     user,
     setUser,
     loading,
+    authLoading, // ✅ Add to context
     isAuthenticated,
     login,
     logout,
