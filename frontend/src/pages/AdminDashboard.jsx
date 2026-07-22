@@ -42,6 +42,7 @@ const AdminDashboard = () => {
   const [error, setError] = useState(null);
   const [filterPeriod, setFilterPeriod] = useState('today');
   const [refreshing, setRefreshing] = useState(false);
+  const [showContent, setShowContent] = useState(false); // ✅ Animation state
   
   const [summary, setSummary] = useState({
     today_orders: 0,
@@ -105,10 +106,21 @@ const AdminDashboard = () => {
     fetchAdminData();
   }, []);
 
+  // ✅ Show content after loading with animation
+  useEffect(() => {
+    if (!loading) {
+      const timer = setTimeout(() => {
+        setShowContent(true);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
+
   const fetchAdminData = async () => {
     try {
       setLoading(true);
       setError(null);
+      setShowContent(false); // ✅ Hide content while loading
       
       console.log('📊 Fetching admin data...');
       
@@ -308,12 +320,12 @@ const AdminDashboard = () => {
       toast.error('Failed to load dashboard data');
     } finally {
       setLoading(false);
-      setRefreshing(false);
     }
   };
 
   const handleRefresh = async () => {
     setRefreshing(true);
+    setShowContent(false);
     await fetchAdminData();
   };
 
@@ -395,11 +407,11 @@ const AdminDashboard = () => {
     }
   };
 
-  if (loading) return <Loading fullScreen={false} />;
+  if (loading) return <Loading fullScreen={false} text="Loading Dashboard..." />;
 
   if (error) {
     return (
-      <div className="text-center py-5">
+      <div className="text-center py-5 animate-fade-in">
         <div className="text-danger mb-3"><FiAlertCircle size={48} /></div>
         <h5>Failed to load dashboard</h5>
         <p className="text-secondary">{error}</p>
@@ -461,15 +473,16 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="animate-fade-in">
-      <div className="d-flex flex-wrap justify-content-between align-items-center mb-4">
-        <div>
+    <div className={`dashboard-container ${showContent ? 'show' : ''}`}>
+      {/* ✅ Header with fade-in */}
+      <div className="d-flex flex-wrap justify-content-between align-items-center mb-4 header-section">
+        <div className="header-content">
           <h4 className="fw-bold mb-1">👑 Admin Dashboard</h4>
           <p className="text-secondary">
             Welcome back, {user?.full_name || 'Admin'}! Here's your business overview.
           </p>
         </div>
-        <div className="d-flex gap-2">
+        <div className="header-actions d-flex gap-2">
           <Button variant="outline-secondary" size="sm" onClick={handleRefresh} disabled={refreshing}>
             {refreshing ? <Spinner animation="border" size="sm" /> : <FiRefreshCw className="me-1" />}
             Refresh
@@ -488,8 +501,8 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* MAIN STATS CARDS */}
-      <Row className="g-3 g-md-4 mb-4">
+      {/* ✅ MAIN STATS CARDS - Stagger Animation */}
+      <Row className="g-3 g-md-4 mb-4 stats-row stagger-children">
         <Col xs={6} md={3}>
           <Card className="shadow-sm border-0 h-100 bg-primary bg-opacity-10">
             <Card.Body className="p-3">
@@ -548,8 +561,8 @@ const AdminDashboard = () => {
         </Col>
       </Row>
 
-      {/* FINANCIAL OVERVIEW + PAYMENT COLLECTION + QUICK STATS */}
-      <Row className="g-3 g-md-4 mb-4">
+      {/* ✅ FINANCIAL OVERVIEW + PAYMENT COLLECTION + QUICK STATS */}
+      <Row className="g-3 g-md-4 mb-4 stagger-children">
         <Col xs={12} md={4}>
           <Card className="shadow-sm border-0 h-100">
             <Card.Body>
@@ -659,9 +672,9 @@ const AdminDashboard = () => {
         </Col>
       </Row>
 
-      {/* ORDER STATUS OVERVIEW */}
-      <h6 className="fw-bold mb-3">📊 Order Status Overview</h6>
-      <Row className="g-3 g-md-4 mb-4">
+      {/* ✅ ORDER STATUS OVERVIEW */}
+      <h6 className="fw-bold mb-3 stagger-item">📊 Order Status Overview</h6>
+      <Row className="g-3 g-md-4 mb-4 stagger-children">
         {statusOrder.map((key) => (
           <Col xs={6} md={3} lg={3} key={key}>
             <Card className="shadow-sm border-0 h-100">
@@ -677,11 +690,13 @@ const AdminDashboard = () => {
       </Row>
 
       {/* ✅ LIVE DELIVERY TRACKING MAP */}
-      <DeliveryLiveMap />
+      <div className="stagger-item">
+        <DeliveryLiveMap />
+      </div>
 
-      {/* TOP CUSTOMERS */}
+      {/* ✅ TOP CUSTOMERS */}
       {topCustomers.length > 0 && (
-        <Row className="mb-4">
+        <Row className="mb-4 stagger-item">
           <Col xs={12}>
             <Card className="shadow-sm border-0">
               <Card.Header className="bg-white">
@@ -711,8 +726,8 @@ const AdminDashboard = () => {
         </Row>
       )}
 
-      {/* RECENT ORDERS */}
-      <Card className="shadow-sm border-0">
+      {/* ✅ RECENT ORDERS */}
+      <Card className="shadow-sm border-0 stagger-item">
         <Card.Header className="bg-white d-flex justify-content-between align-items-center">
           <h6 className="fw-bold mb-0"><FiPackage className="me-2" /> Recent Orders ({periodLabels[filterPeriod]})</h6>
           <span className="text-secondary small">{filteredOrders.length || 0} orders</span>
@@ -782,6 +797,162 @@ const AdminDashboard = () => {
           )}
         </Card.Body>
       </Card>
+
+      {/* ✅ CSS Animations */}
+      <style jsx>{`
+        .dashboard-container {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dashboard-container.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* ✅ Header Animation */
+        .header-section {
+          opacity: 0;
+          animation: fadeInDown 0.6s ease-out 0.1s both;
+        }
+
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* ✅ Stagger Animation for children */
+        .stagger-children > * {
+          opacity: 0;
+          animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+        .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+        .stagger-children > *:nth-child(7) { animation-delay: 0.7s; }
+        .stagger-children > *:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        /* ✅ Single item animation */
+        .stagger-item {
+          opacity: 0;
+          animation: fadeInUp 0.5s ease-out 0.3s both;
+        }
+
+        /* ✅ Card Hover Animation */
+        .card {
+          transition: all 0.3s ease;
+        }
+
+        .card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        /* ✅ Button Animation */
+        .btn-outline-secondary {
+          transition: all 0.3s ease;
+        }
+
+        .btn-outline-secondary:hover {
+          transform: translateY(-2px);
+        }
+
+        /* ✅ Dark Mode Support */
+        .dark-mode .dashboard-container {
+          color: #f1f5f9;
+        }
+
+        .dark-mode .card {
+          background-color: #1a2332 !important;
+          border-color: #2d3748 !important;
+        }
+
+        .dark-mode .bg-white {
+          background-color: #1a2332 !important;
+        }
+
+        .dark-mode .text-secondary {
+          color: #94a3b8 !important;
+        }
+
+        .dark-mode .table td {
+          color: #f1f5f9 !important;
+        }
+
+        .dark-mode .table thead th {
+          background-color: #1e293b !important;
+          color: #94a3b8 !important;
+        }
+
+        /* ✅ Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+          .dashboard-container,
+          .header-section,
+          .stagger-children > *,
+          .stagger-item,
+          .card {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
+
+        /* ✅ Mobile Responsive */
+        @media (max-width: 576px) {
+          .header-content h4 {
+            font-size: 1.2rem !important;
+          }
+
+          .header-actions {
+            flex-wrap: wrap;
+          }
+
+          .header-actions .btn,
+          .header-actions .badge,
+          .header-actions .dropdown {
+            font-size: 12px !important;
+          }
+
+          .stats-row .card-body {
+            padding: 0.5rem !important;
+          }
+
+          .stats-row .fw-bold.fs-3 {
+            font-size: 1.2rem !important;
+          }
+
+          .stats-row .text-secondary {
+            font-size: 11px !important;
+          }
+
+          .stats-row svg {
+            width: 24px !important;
+            height: 24px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };
