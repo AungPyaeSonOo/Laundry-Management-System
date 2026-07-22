@@ -190,7 +190,9 @@ laundry-management-system/
 │ ├── server.js
 │ ├── package.json
 │ └── .env.example
-│
+
+```
+
 ├── frontend/
 │ ├── src/
 │ │ ├── api/
