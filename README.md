@@ -132,6 +132,7 @@
 
 ## 📁 Project Structure
 
+```
 laundry-management-system/
 │
 ├── backend/
@@ -280,3 +281,5 @@ laundry-management-system/
 ├── package.json (Root)
 ├── README.md
 └── .gitignore
+
+```
